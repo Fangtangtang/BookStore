@@ -1,0 +1,3 @@
+/mnt/c/repos/BookStore/cmake-build-debug/CMakeFiles/BookStore.dir
+/mnt/c/repos/BookStore/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/repos/BookStore/cmake-build-debug/CMakeFiles/rebuild_cache.dir

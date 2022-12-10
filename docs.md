@@ -412,40 +412,92 @@ private:
 说明：辅助信息存取,用于账户信息、图书信息的维护。
 
 ```c++
-struct BlockNode{
-  //链接
-  blockNode *pre=nullptr;   
-  blockNode *next=nullptr;
-    
-  //储存内容
-  someType Array[block_size];
-    
-  //块状链表基础参数
-  int size;
-  int max;
-  int min;
-  
-  //向BlockNode的Array插入一个元素
-  void insert(int index);
-}
+#ifndef BOOKSTORE_LINKLIST_H
+#define BOOKSTORE_LINKLIST_H
 
-class LinkList{  
+#include <fstream>
+
+template<class someType>//Array 类型
+class LinkList {
+
 public:
-  LinkList();
+    //构造函数
+    //file_name:文件名
+    //typeSize：someType占空间(byte)大小,由此决定block_size
+    //1.将LinkList与对应的文件和someType大小关联
+    //2.构造list头节点，写入文件
+    LinkList(const std::string &file_name, int typeSize);
 
-  ~LinkList();
-  
-  //插入元素
-  void Insert(int index);
-    
-  //删去元素
-  void Erase(int index);
-    
-  //寻找元素
-  someType FindIndex(int index);
-}
+    ~LinkList();
+
+    //插入元素
+    void Insert(int index, const someType &ele);
+
+    //删去元素
+    void Erase(int index);
+
+    //寻找元素
+    someType FindIndex(int index);
+
 private:
-  BlockNode *head,*rear;
+    //a node in LinkList
+    struct BlockNode {
+        //链接
+        long pre = 0;
+        long next = 0;
+
+        //块状链表基础参数
+        int size = 0;//元素个数
+        int max = 0;//区间上界
+        int min = 0;//区间下界
+        static int block_size;
+
+        //储存内容
+        someType Array[block_size];
+
+        //返回找到的ele
+        someType Find(int index);
+
+        //向BlockNode的Array插入一个元素
+        //需要裂块 返回true
+        bool Insert(int index, const someType &ele);
+
+        //从BlockNode的Array删除一个元素
+        bool Erase(int index);
+    };
+
+    //empty head
+    struct HeadNode {
+        long pre;
+        long next;
+    };
+
+    long head, rear;
+
+    //LinkList读写的文件流对象 在LinkList构造时和相关文件关联
+    std::fstream r_w_LinkList;
+
+    //返回iter指向节点
+    BlockNode ReadNode(long iter);
+    
+    //修改blockNode信息，覆盖原信息
+    void WriteNode(const BlockNode &blockNode, const long &iter);
+
+    //返回index所在的node
+    BlockNode FindNode(int index, long &iter);
+
+    //在文件末开一个新node
+    long GetNode();
+
+    //裂块
+    void BreakNode(const long &iter, BlockNode &blockNode);
+
+    //并块
+    void CombineNode(const long &iter, BlockNode &blockNode1,BlockNode &blockNode2);
+};
+
+#endif //BOOKSTORE_LINKLIST_H
+
 ```
 
 
@@ -522,25 +574,25 @@ private:
 
 ### 文件存储说明
 
-使用二进制文件储存信息。
+- 使用二进制文件储存信息。
+- 所有信息使用块状链表存在文件中，链表的结点大小设计将尽量提高对读写信息的利用效率。
 
 
 
 #### 账户信息相关文件
-- account_information：账户全部基础信息（一个块状链表？）
-- account_index：账户ID到index的映射结果（一个map？）
+- account_information：账户全部基础信息（块状链表）
+- account_index：账户ID到index的映射结果（类似map）
 
 
-
-#### 登录状态相关文件（和操作日志重复？）
-
-- 
 
 
 
 ####  图书信息文件
-- book_information：账户全部基础信息
-- book_information：图书ISBN到index的映射结果
+- book_information：图书全部基础信息
+- book_ISBN_index：图书ISBN到index的映射结果
+- book_name_index：图书name到index的映射结果
+- book_author_index：图书author到index的映射结果
+- book_keyword_index：图书keyword到index的映射结果
 
 
 
