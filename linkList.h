@@ -2,14 +2,13 @@
 // Created by 房诗涵 on 2022/12/10.
 //
 //对Array中的struct重载大比较运算符，可直接将插入元素和Array中元素比
-//重载> != =
-//函数 GetIndex
+//直接以ID等重载作为index
 #ifndef BOOKSTORE_LINKLIST_H
 #define BOOKSTORE_LINKLIST_H
 
 #include <fstream>
 
-template<class someType>//Array 类型
+template<class key,class someType>//Array 类型
 class LinkList {
 
 public:
@@ -18,18 +17,19 @@ public:
     //typeSize：someType占空间(byte)大小,由此决定block_size
     //1.将LinkList与对应的文件和someType大小关联
     //2.构造list头节点，写入文件
+
     LinkList(const std::string &file_name, int typeSize);
 
     ~LinkList();
 
     //插入元素
-    void Insert(int index, const someType &ele);
+    void Insert(key key1, const someType &ele);
 
     //删去元素
-    void Erase(int index);
+    void Erase(key key1);
 
     //寻找元素
-    someType FindIndex(int index);
+    someType FindKey(key key1);
 
 private:
     //a node in LinkList
@@ -40,22 +40,22 @@ private:
 
         //块状链表基础参数
         int size = 0;//元素个数
-        int max = 0;//区间上界
-        int min = 0;//区间下界
+        key max ;//区间上界
+        key min ;//区间下界
         static int block_size;
 
         //储存内容
         someType Array[block_size];
 
         //返回找到的ele
-        someType Find(int index);
+        someType Find(key key1);
 
         //向BlockNode的Array插入一个元素
         //需要裂块 返回true
-        bool Insert(int index, const someType &ele);
+        bool Insert(key key1, const someType &ele);
 
         //从BlockNode的Array删除一个元素
-        bool Erase(int index);
+        bool Erase(key key1);
     };
 
     //empty head
@@ -76,7 +76,7 @@ private:
     void WriteNode(const BlockNode &blockNode, const long &iter);
 
     //返回index所在的node
-    BlockNode FindNode(int index, long &iter);
+    BlockNode FindNode(key key1, long &iter);
 
     //在文件末开一个新node
     long GetNode();

@@ -129,6 +129,30 @@ BookStore/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/build
 .PHONY : BookStore/fast
 
+account.o: account.cpp.o
+.PHONY : account.o
+
+# target to build an object file
+account.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/account.cpp.o
+.PHONY : account.cpp.o
+
+account.i: account.cpp.i
+.PHONY : account.i
+
+# target to preprocess a source file
+account.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/account.cpp.i
+.PHONY : account.cpp.i
+
+account.s: account.cpp.s
+.PHONY : account.s
+
+# target to generate assembly for a file
+account.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/account.cpp.s
+.PHONY : account.cpp.s
+
 linkList.o: linkList.cpp.o
 .PHONY : linkList.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... BookStore"
+	@echo "... account.o"
+	@echo "... account.i"
+	@echo "... account.s"
 	@echo "... linkList.o"
 	@echo "... linkList.i"
 	@echo "... linkList.s"

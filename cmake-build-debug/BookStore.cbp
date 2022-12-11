@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/mnt/c/repos/BookStore/account.cpp">
+			<Option target="BookStore"/>
+		</Unit>
+		<Unit filename="/mnt/c/repos/BookStore/account.h">
+			<Option target="BookStore"/>
+		</Unit>
 		<Unit filename="/mnt/c/repos/BookStore/linkList.cpp">
 			<Option target="BookStore"/>
 		</Unit>
