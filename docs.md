@@ -246,9 +246,9 @@ exit。
 struct account {
   int privilege;
     
-  char ID [30], name[30];
+  char ID [31], name[31];
     
-  char password[30];
+  char password[31];
   
   //修改密码
   void ChangePassword(std::string &CurrentPassword,std::string &NewPassword);
@@ -317,13 +317,13 @@ private:
 ```c++
 struct book {
   //合法字符集：除不可见字符以外 ASCII 字符
-  char ISBN[20]; 
+  char ISBN[21]; 
     
-  char name[60];
+  char name[61];
     
-  char author[60];
+  char author[61];
     
-  char keyword[60]; //内容以 | 为分隔可以出现多段信息
+  char keyword[61]; //内容以 | 为分隔可以出现多段信息
     
   int quantity; //数值不超过 2'147'483'647
     
@@ -412,12 +412,13 @@ private:
 说明：辅助信息存取,用于账户信息、图书信息的维护。
 
 ```c++
+
 #ifndef BOOKSTORE_LINKLIST_H
 #define BOOKSTORE_LINKLIST_H
 
 #include <fstream>
 
-template<class someType>//Array 类型
+template<class key,class someType>//Array 类型
 class LinkList {
 
 public:
@@ -431,13 +432,13 @@ public:
     ~LinkList();
 
     //插入元素
-    void Insert(int index, const someType &ele);
+    void Insert(key key1, const someType &ele);
 
     //删去元素
-    void Erase(int index);
+    void Erase(key key1);
 
     //寻找元素
-    someType FindIndex(int index);
+    someType FindKey(key key1);
 
 private:
     //a node in LinkList
@@ -448,22 +449,22 @@ private:
 
         //块状链表基础参数
         int size = 0;//元素个数
-        int max = 0;//区间上界
-        int min = 0;//区间下界
+        key max ;//区间上界
+        key min ;//区间下界
         static int block_size;
 
         //储存内容
         someType Array[block_size];
 
         //返回找到的ele
-        someType Find(int index);
+        someType Find(key key1);
 
         //向BlockNode的Array插入一个元素
         //需要裂块 返回true
-        bool Insert(int index, const someType &ele);
+        bool Insert(key key1, const someType &ele);
 
         //从BlockNode的Array删除一个元素
-        bool Erase(int index);
+        bool Erase(key key1);
     };
 
     //empty head
@@ -479,12 +480,12 @@ private:
 
     //返回iter指向节点
     BlockNode ReadNode(long iter);
-    
+
     //修改blockNode信息，覆盖原信息
     void WriteNode(const BlockNode &blockNode, const long &iter);
 
     //返回index所在的node
-    BlockNode FindNode(int index, long &iter);
+    BlockNode FindNode(key key1, long &iter);
 
     //在文件末开一个新node
     long GetNode();
