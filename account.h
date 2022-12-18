@@ -47,6 +47,9 @@ struct account {
 
 class AccountManager{
 public:
+    AccountManager();
+
+    ~AccountManager()=default;
     //登录账户 {0} register [UserID] [Password] [Username]
     void Register(std::string &UserID,std::string &Password,std::string & Username);
 
@@ -62,7 +65,7 @@ public:
 private:
     //储存账户信息的块状链表
     //类中用（）会和声明函数歧义
-    LinkList<ID,account> accountList{"account_information",sizeof(account)};
+    LinkList<ID,account> accountList{"account_information"};
 
     std::fstream io_account_information;
 

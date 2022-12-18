@@ -3,8 +3,6 @@ file(REMOVE_RECURSE
   "BookStore.pdb"
   "CMakeFiles/BookStore.dir/account.cpp.o"
   "CMakeFiles/BookStore.dir/account.cpp.o.d"
-  "CMakeFiles/BookStore.dir/linkList.cpp.o"
-  "CMakeFiles/BookStore.dir/linkList.cpp.o.d"
   "CMakeFiles/BookStore.dir/main.cpp.o"
   "CMakeFiles/BookStore.dir/main.cpp.o.d"
 )

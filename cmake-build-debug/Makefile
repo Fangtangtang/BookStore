@@ -153,30 +153,6 @@ account.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/account.cpp.s
 .PHONY : account.cpp.s
 
-linkList.o: linkList.cpp.o
-.PHONY : linkList.o
-
-# target to build an object file
-linkList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/linkList.cpp.o
-.PHONY : linkList.cpp.o
-
-linkList.i: linkList.cpp.i
-.PHONY : linkList.i
-
-# target to preprocess a source file
-linkList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/linkList.cpp.i
-.PHONY : linkList.cpp.i
-
-linkList.s: linkList.cpp.s
-.PHONY : linkList.s
-
-# target to generate assembly for a file
-linkList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/BookStore.dir/build.make CMakeFiles/BookStore.dir/linkList.cpp.s
-.PHONY : linkList.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -213,9 +189,6 @@ help:
 	@echo "... account.o"
 	@echo "... account.i"
 	@echo "... account.s"
-	@echo "... linkList.o"
-	@echo "... linkList.i"
-	@echo "... linkList.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

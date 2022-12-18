@@ -2,8 +2,8 @@
 // Created by 房诗涵 on 2022/12/10.
 //
 #include "account.h"
+#include "linkList.h"
 
-#include <utility>
 
 ID::ID() {
     userID[0] = '\0';//empty string
@@ -52,6 +52,9 @@ ID account::GetKey() const {
     return userID;
 }
 
+AccountManager::AccountManager() {
+
+}
 void AccountManager::AddUser(std::string &UserID, std::string &Password, int Privilege, std::string &Username) {
     //create an account
     account userAccount;
