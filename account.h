@@ -9,13 +9,17 @@
 
 #include "linkList.h"
 #include <string>
+
+//权限 符号常量 对应{0} {1} {3} {7}
+enum Privilege{visitor,customer,clerk,host};
+
 //key:ID
 struct ID {
     char userID[31];
 
     ID();
 
-    ID(std::string id);
+    ID(char* id);
 
     ~ID();
 
@@ -30,7 +34,7 @@ struct ID {
 };
 
 struct account {
-    int privilege;
+    Privilege privilege;
     ID userID;
     char name[31];
     char password[31];

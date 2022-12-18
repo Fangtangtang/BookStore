@@ -1,6 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include "linkList.h"
 #include "account.h"
 #include <string>
 int main() {

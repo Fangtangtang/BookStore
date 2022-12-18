@@ -389,11 +389,8 @@ struct Index {
         memset(index, 0, sizeof(index));
     }
 
-    Index(std::string id) {
-        for (int i = 0; i < id.size() && i < sizeof(index); ++i)
-            index[i] = id[i];
-        for (int i = id.size(); i < sizeof(index); ++i)
-            index[i] = 0;
+    Index(char* id) {
+       strcpy(index,id);
     }
 
     ~Index() = default;
@@ -473,7 +470,7 @@ public:
         accountList.printList();
     }
 
-    void Insert(std::string &index, int value) {
+    void Insert(char* index, int value) {
         Index index1(index);
         Account ele;
         ele.index = index1;
@@ -481,7 +478,7 @@ public:
         accountList.Insert(ele);
     }
 
-    bool Delete(std::string &index, int value) {
+    bool Delete(char* index, int value) {
         Index index1(index);
         Account ele;
         ele.index = index1;
@@ -490,7 +487,7 @@ public:
         return delete_flag;
     }
 
-    void Find(const std::string &index){
+    void Find(char* index){
         Index index1(index);
         accountList.FindPrint(index1);
     }
@@ -509,7 +506,8 @@ using namespace std;
 int main() {
 //    freopen("/dev/null", "w", stdout);
 //    freopen("my.out", "w", stdout);
-    string cmd, index;
+    string cmd;
+    char id[65];
     AccountManager *accountManager = new AccountManager;
     int value;
     int n;
@@ -517,17 +515,17 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> cmd;
         if (cmd == "insert") {
-            cin >> index >> value;
-            accountManager->Insert(index, value);
+            cin >> id >> value;
+            accountManager->Insert(id, value);
        }
         if (cmd == "delete") {
-            cin >> index >> value;
-            accountManager->Delete(index, value);
+            cin >> id >> value;
+            accountManager->Delete(id, value);
         }
         //index-based find
         if (cmd == "find") {
-            cin >> index;
-            accountManager->Find(index);
+            cin >> id;
+            accountManager->Find(id);
             std::cout << "\n";
         }
     }
